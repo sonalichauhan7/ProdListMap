@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+    Alert,
     Keyboard,
     StatusBar,
     Text,
@@ -66,10 +67,22 @@ function Otp({ route }: IProps): JSX.Element {
             SetLoading(false);
             resetStack();
         } catch (error) {
-            SetLoading(false)
+            SetLoading(false);
+            showFailureAlert();
             console.error("Error verifying OTP ====>", error);
         }
     };
+
+    const showFailureAlert = () => {
+        Alert.alert(
+            STRING.addProduct.sorry,
+            STRING.otp.enter_valid_code,
+            [
+                { text: 'OK', onPress: () => { } },
+            ],
+            { cancelable: true }
+        );
+    }
 
     return (
         <SafeAreaView

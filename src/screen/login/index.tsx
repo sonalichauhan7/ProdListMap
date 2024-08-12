@@ -6,7 +6,8 @@ import {
     StatusBar,
     TextInput,
     Button,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 import styles from './style';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -57,9 +58,21 @@ function Login(): JSX.Element {
                 navigation.navigate(Routes.Otp, { verificationId: confirmation.verificationId, mobileNumber: contact });
             }
         } catch (err) {
-            SetLoading(false)
+            SetLoading(false);
+            showFailureAlert();
             console.log("In catch block =====>", err)
         }
+    }
+
+    const showFailureAlert = () => {
+        Alert.alert(
+            STRING.addProduct.sorry,
+            STRING.login.correct_mobile,
+            [
+                { text: 'OK', onPress: () => { } },
+            ],
+            { cancelable: true }
+        );
     }
 
     return (
