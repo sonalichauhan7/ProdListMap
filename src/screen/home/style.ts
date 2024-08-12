@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "../../theme";
+import { COLORS, FONTS, SIZES } from "../../theme";
 
 const styles = StyleSheet.create({
     saContainer: {
@@ -34,6 +34,25 @@ const styles = StyleSheet.create({
     plus: {
         color: COLORS.white,
         fontSize: SIZES.countPixelRatio(45),
+    },
+    centerConatainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    tryAgain: {
+        color: COLORS.black,
+        fontSize: SIZES.countPixelRatio(12),
+        fontFamily: FONTS.SEMI_BOLD
+    },
+    loaderContainer: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        justifyContent: "center",
+        alignItems: "center",
     }
 })
 

@@ -83,6 +83,7 @@ function AddProduct(): React.JSX.Element {
                 })
                 .catch(error => {
                     SetLoading(false);
+                    showFailureAlert();
                     console.log("catch block====>", error)
                 });
         }
@@ -92,6 +93,17 @@ function AddProduct(): React.JSX.Element {
         Alert.alert(
             STRING.addProduct.success,
             STRING.addProduct.added_success,
+            [
+                { text: 'OK', onPress: () => navigation.goBack() },
+            ],
+            { cancelable: true }
+        );
+    }
+
+    const showFailureAlert = () => {
+        Alert.alert(
+            STRING.addProduct.sorry,
+            STRING.productList.try_again,
             [
                 { text: 'OK', onPress: () => navigation.goBack() },
             ],

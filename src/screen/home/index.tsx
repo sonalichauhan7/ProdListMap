@@ -9,7 +9,7 @@ import {
 import styles from './style';
 import SafeAreaView from 'react-native-safe-area-view';
 import axios from "axios";
-import { BASE_URL } from '../../utils';
+import { BASE_URL, STRING } from '../../utils';
 import { COLORS } from '../../theme';
 import ProductItem from '../../component/productItem';
 import { useNavigation, NavigationProp } from "@react-navigation/native";
@@ -85,6 +85,15 @@ function Home(): JSX.Element {
         navigation.navigate(Routes.AddProduct)
     }
 
+    const renderEmptyContainer = () => {
+        if (isLoading) return null
+        return (
+            <View style={styles.centerConatainer}>
+                <Text style={styles.tryAgain}>{STRING.productList.try_again}</Text>
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView
             style={styles.saContainer}
@@ -95,16 +104,20 @@ function Home(): JSX.Element {
                 translucent={true}
             />
             <View style={styles.container}>
-                {!isLoading ? <TotalPrice price={totalPrice.toFixed(2) + " ₹"} /> : null}
+                {!isLoading && productList.length > 0 ? <TotalPrice price={totalPrice.toFixed(2) + " ₹"} /> : null}
                 <FlatList
                     data={productList}
                     renderItem={renderProductList}
                     keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}
                     ItemSeparatorComponent={renderSeparator}
+                    ListEmptyComponent={renderEmptyContainer}
+                    contentContainerStyle={{ flexGrow: 1 }}
                 />
-                {!isLoading ? renderAddButton() : null}
-                <Loader isLoading={isLoading} />
+                {!isLoading && productList.length > 0 ? renderAddButton() : null}
+                <View style={styles.loaderContainer}>
+                    <Loader isLoading={isLoading} />
+                </View>
             </View>
         </SafeAreaView>
     );

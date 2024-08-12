@@ -17,6 +17,7 @@ export default {
         price: "Price: ",
         description: "Description: ",
         category: "Category: ",
+        try_again: "Please try again"
     },
     totalPrice: {
         total_price: "Total Price: "
@@ -37,6 +38,7 @@ export default {
         category_error: "Please enter category",
         price_error: "Please enter price",
         success: "Success",
-        added_success: "Product is added successfully"
+        added_success: "Product is added successfully",
+        sorry: "Sorry!",
     }
 }
